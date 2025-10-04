@@ -1,6 +1,18 @@
-This assignment will be graded via peer assessment.
-my_matrix <- makeCacheMatrix(matrix(c(1, 2, 3, 4), nrow = 2, ncol = 2))
-# Compute and cache the inverse of the matrix
-inverse_matrix <- cacheSolve(my_matrix)
-# Print the inverse matrix
-print(inverse_matrix)
+## This funciton creates a "matrix" object that can cache its inverse
+make_cache_matrix <-function(x=matrix()) {
+inv <- NULL
+## Function to set the matrix
+set <- function(y) {
+x<<-y 
+inv<<-NULL #Reset the inverse when a new matrix is set
+#Function to get the matrix
+get<- function() x
+#Function to set the inverse
+setInverse<- function(inverse) inv<<-inverse
+## This function is to get the inverse
+getInverse<-function()inv
+## Return a list of functions
+list(set=set, get=get, 
+     setInverse=setInverse
+     getInverse=getInverse)
+}
