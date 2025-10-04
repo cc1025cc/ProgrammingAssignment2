@@ -16,3 +16,15 @@ list(set=set, get=get,
      setInverse=setInverse
      getInverse=getInverse)
 }
+## This functioncomputes the inverse of the "matrix" returned by makeCacheMatrix
+if(!is.null(inv)){
+message("gettinf cached inverse")
+return(inv)
+}
+
+## Otherwise compute the inverse
+mat<-x$get()
+inv<- solve(mat, ...) ## compute the inverse
+x$setInverse(inv) ## cache the inverse
+inv
+}
