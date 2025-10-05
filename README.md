@@ -1,30 +1,26 @@
-## This funciton creates a "matrix" object that can cache its inverse
+## Comment 1: This funciton creates a "matrix" object that can cache its inverse. It innvolves, setting the value of the matrix, getting the value of the matrix, settting the value of the inverse, and getting the value of the inverse. 
 make_cache_matrix <-function(x=matrix()) {
 inv <- NULL
-## Function to set the matrix
 set <- function(y) {
-x<<-y 
-inv<<-NULL #Reset the inverse when a new matrix is set
-#Function to get the matrix
-get<- function() x
-#Function to set the inverse
-setInverse<- function(inverse) inv<<-inverse
-## This function is to get the inverse
-getInverse<-function()inv
-## Return a list of functions
-list(set=set, get=get, 
-     setInverse=setInverse
-     getInverse=getInverse)
+x << -y 
+inv << -NULL 
+get <- function() x
+setInverse <- function(inverse) inv <<- inverse
+getInverse <- function() inv
+
+list(set = set, get = get, 
+     setInverse = setInverse
+     getInverse = getInverse)
 }
-## This functioncomputes the inverse of the "matrix" returned by makeCacheMatrix
+## Comment 2: This function computes the inverse of the "matrix" created from the function that is listed above. It will primarily check if the inverse has been calculated and if it has, it will get the inverse from the cache and not perform the computation. If the inverse has not been calculated, it will calulate the inverse and set its valuue in the cache through the setinverse function. 
+cacheinverse <- function(x, ...) {
+inv <- x$getinv()
 if(!is.null(inv)){
-message("gettinf cached inverse")
+message("getting cached inverse")
 return(inv)
 }
-
-## Otherwise compute the inverse
 mat<-x$get()
-inv<- solve(mat, ...) ## compute the inverse
-x$setInverse(inv) ## cache the inverse
+inv<- solve(mat, ...)  
+x$setInverse(inv)
 inv
 }
