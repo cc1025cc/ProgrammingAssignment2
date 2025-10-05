@@ -4,6 +4,7 @@ inv <- NULL
 set <- function(y) {
 x << -y 
 inv << -NULL 
+}
 get <- function() x
 setInverse <- function(inverse) inv <<- inverse
 getInverse <- function() inv
@@ -13,7 +14,7 @@ list(set = set, get = get,
      getInverse = getInverse)
 }
 ## Comment 2: This function computes the inverse of the "matrix" created from the function that is listed above. It will primarily check if the inverse has been calculated and if it has, it will get the inverse from the cache and not perform the computation. If the inverse has not been calculated, it will calulate the inverse and set its valuue in the cache through the setinverse function. 
-cacheinverse <- function(x, ...) {
+cachesolve <- function(x, ...) {
 inv <- x$getinv()
 if(!is.null(inv)){
 message("getting cached inverse")
